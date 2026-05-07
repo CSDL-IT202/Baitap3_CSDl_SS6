@@ -1,6 +1,6 @@
-SELECT driver_id, name, distance_km, trust_score
-FROM Drivers
-WHERE status = 'AVAILABLE'
-  AND trust_score >= 80
-ORDER BY distance_km ASC, trust_score DESC;
-
+SELECT user_id
+FROM Bookings
+GROUP BY user_id
+HAVING 
+    COUNT(*) >= 10 
+    AND SUM(CASE WHEN status = 'CANCELLED' THEN 1 ELSE 0 END) > 5;
